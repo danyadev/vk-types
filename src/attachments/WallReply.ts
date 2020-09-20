@@ -1,4 +1,5 @@
 import { VKLike } from '../objects';
+import { VKAttachment } from '../attachments';
 
 export interface VKAttachmentWallReply {
   /**
@@ -29,6 +30,10 @@ export interface VKAttachmentWallReply {
    * Текст комментария
    */
   text: string
+  /**
+   * Приходит, если есть вложения
+   */
+  attachments?: VKAttachment[]
   /**
    * ID комментария, под которым началась отдельная ветка с комментариями
    *
