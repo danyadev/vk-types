@@ -1,3 +1,8 @@
+/**
+ * NOTE: Описаны только те значения, которые приходят вместе с fields
+ * photo_50,photo_100,verified,sex,status,first_name_acc,last_name_acc,online,last_seen,online_info,domain
+ */
+
 export interface VKUser {
   id: number
   first_name: string
@@ -14,7 +19,9 @@ export interface VKUser {
    */
   can_access_closed?: boolean
   /**
-   * 0 - неизвестно
+   * Пол пользователя
+   *
+   * 0 - не указан
    *
    * 1 - женский
    *

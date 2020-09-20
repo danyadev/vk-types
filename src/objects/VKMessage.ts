@@ -1,41 +1,7 @@
 import { VKImage, VKKeyboardButton, VKInlineKeyboard } from '.';
 import { VKAttachment, VKAttachmentGeo } from './attachments';
 
-interface VKMessageTemplateElement {
-  title: string
-  action: {
-    type: 'open_photo'
-  }
-  description: string
-  photo: VKImage[]
-  buttons: VKKeyboardButton[]
-}
-
-export interface VKMessageTemplate {
-  type: 'carousel'
-  elements: VKMessageTemplateElement[]
-}
-
-// chat_id со всеми сервисными сообщениями для тестов: 541
-export interface VKMessageAction {
-  type:
-    | 'chat_create' | 'chat_photo_update' | 'chat_photo_remove' | 'chat_title_update' | 'chat_pin_message'
-    | 'chat_unpin_message' | 'chat_invite_user' | 'chat_invite_user_by_link' | 'chat_kick_user' | 'chat_screenshot'
-    | 'chat_group_call_started'
-  // chat_create, chat_title_update
-  text?: string
-  // chat_pin_message
-  message?: string
-  // chat_pin_message, chat_unpin_message, chat_invite_user, chat_kick_user, chat_screenshot
-  member_id?: number
-  // chat_pin_message, chat_unpin_message
-  conversation_message_id?: number
-
-  // Только для сообщения из LongPoll
-  is_channel?: 1
-}
-
-// TODO Может создать отдельные типы для реплая и пересланных сообщений?
+// TODO Создать отдельные типы для реплая и пересланных сообщений
 export interface VKMessage {
   /**
    * ???
@@ -106,4 +72,35 @@ export interface VKMessage {
   ttl?: number
   // Исчезло ли сообщение
   is_expired?: true
+}
+
+// chat_id со всеми сервисными сообщениями для тестов: 541
+export interface VKMessageAction {
+  type:
+    | 'chat_create' | 'chat_photo_update' | 'chat_photo_remove' | 'chat_title_update' | 'chat_pin_message'
+    | 'chat_unpin_message' | 'chat_invite_user' | 'chat_invite_user_by_link' | 'chat_kick_user' | 'chat_screenshot'
+    | 'chat_group_call_started' | 'chat_invite_user_by_call' | 'chat_invite_user_by_call_join_link'
+  // chat_create, chat_title_update
+  text?: string
+  // chat_pin_message
+  message?: string
+  // chat_pin_message, chat_unpin_message, chat_invite_user, chat_kick_user, chat_screenshot, chat_invite_user_by_call
+  member_id?: number
+  // chat_pin_message, chat_unpin_message
+  conversation_message_id?: number
+}
+
+export interface VKMessageTemplate {
+  type: 'carousel'
+  elements: VKMessageTemplateElement[]
+}
+
+interface VKMessageTemplateElement {
+  title: string
+  action: {
+    type: 'open_photo'
+  }
+  description: string
+  photo: VKImage[]
+  buttons: VKKeyboardButton[]
 }
