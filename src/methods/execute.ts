@@ -1,4 +1,4 @@
-import { VKUser, VKGroup, VKConversation, VKMessage, VKConversationPushSettings } from '..';
+import { VKConversation, VKConversationPushSettings, VKGroup, VKMessage, VKUser } from '../objects';
 import { MessagesGetLongPollServer } from './messages';
 import { AccountGetCounters } from './account';
 

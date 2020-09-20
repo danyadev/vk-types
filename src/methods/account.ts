@@ -1,4 +1,4 @@
-import { VKConversationPushSettings } from '..';
+import { VKConversationPushSettings } from '../objects';
 
 export interface AccountGetPushSettings {
   disabled: 1

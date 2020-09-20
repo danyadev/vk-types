@@ -1,4 +1,4 @@
-import { VKConversation, VKGroup, VKMessage, VKUser } from '..';
+import { VKConversation, VKGroup, VKMessage, VKUser } from '../objects';
 
 /**
  * Возвращает ID отправленного сообщения
