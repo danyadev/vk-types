@@ -1,0 +1,9 @@
+{
+  "name": "vk-typings",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "description": "Тайпинги для работы с API ВКонтакте",
+  "repository": "https://github.com/danyadev/vk-typings",
+  "author": "danyadev <danyadev@mail.ru>",
+  "license": "Apache-2.0"
+}
