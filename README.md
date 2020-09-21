@@ -71,9 +71,12 @@ import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 ### Методы
 [Папка с методами](https://github.com/danyadev/vk-types/tree/master/src/methods)
 
+#### account
+
 - `account.getCounters`
 - `account.getPushSettings`
 
+#### messages
 
 - `messages.delete`
 - `messages.getById`
