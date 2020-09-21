@@ -1,42 +1,5 @@
 import { VKConversation, VKGroup, VKMessage, VKUser } from '../objects';
 
-/**
- * Возвращает ID отправленного сообщения
- */
-export type MessagesSend = number;
-
-export interface MessagesSendParams {
-  user_id?: number
-  random_id: number
-  peer_id?: number
-  domain?: string
-  chat_id?: number
-  message?: string
-  lat?: number
-  long?: number
-  attachment?: string
-  reply_to?: number
-  forward_messages?: string
-  sticker_id?: number
-  // TODO
-  keyboard?: any
-  // TODO
-  template?: any
-  // TODO
-  payload?: any
-  dont_parse_links?: 0 | 1
-  disable_mentions?: 0 | 1
-  // TODO
-  intent?: any
-  // TODO
-  subscribe_id?: number
-  // type
-  // expire_ttl
-  // silent
-}
-
-/** ********************************************************************************************* */
-
 export type MessagesDelete = 1;
 
 export interface MessagesDeleteParams {
@@ -48,15 +11,21 @@ export interface MessagesDeleteParams {
 
 /** ********************************************************************************************* */
 
-export interface MessagesGetConversationsById {
+export interface MessagesGetById {
   count: number
-  items: VKConversation[]
+  items: VKMessage[]
+  /**
+   * Приходит только при extended: 1 и при наличии самих профилей
+   */
   profiles?: VKUser[]
+  /**
+   * Приходит только при extended: 1 и при наличии самих сообществ
+   */
   groups?: VKGroup[]
 }
 
-export interface MessagesGetConversationsByIdParams {
-  peer_ids: number | string
+export interface MessagesGetByIdParams {
+  message_ids: number | string
   extended?: 0 | 1
   fields?: string
 }
@@ -106,29 +75,17 @@ export interface MessagesGetConversationMembersParams {
 
 /** ********************************************************************************************* */
 
-export interface MessagesGetLongPollServer {
-  server: string
-  key: string
-  ts: number
-  /**
-   * Приходит только при указании need_pts в запросе
-   */
-  pts?: number
+export interface MessagesGetConversationsById {
+  count: number
+  items: VKConversation[]
+  profiles?: VKUser[]
+  groups?: VKGroup[]
 }
 
-export interface MessagesGetLongPollServerParams {
-  /**
-   * Технически он не имеет никакого значения при вызове этого метода,
-   * ведь версия указывается при каждом запросе к LongPoll.
-   *
-   * Принимает любое положительные число.
-   */
-  lp_version?: number
-  /**
-   * Нужен для возвращения pts, который нужен для получения истории событий
-   * начиная с определенного момента.
-   */
-  need_pts?: 0 | 1
+export interface MessagesGetConversationsByIdParams {
+  peer_ids: number | string
+  extended?: 0 | 1
+  fields?: string
 }
 
 /** ********************************************************************************************* */
@@ -163,7 +120,7 @@ export interface MessagesGetLongPollHistoryParams {
    * ID последнего известного события. Возвращается в методе
    * messages.getLongPollServer и в ответе с самого сервера.
    *
-   * Обязательный параметр, если не передавать pts.
+   * Обязательный параметр, если не передавать pts. Не имеет смысла при указании pts.
    *
    * Если указывать ts вместо pts, то максимум метод сможет вернуть 256 последних событий.
    * Если же событий пришло больше, то вернется Internal Server Error.
@@ -186,7 +143,7 @@ export interface MessagesGetLongPollHistoryParams {
   /**
    * Максимальное количество возвращаемых событий.
    *
-   * Минимум 1000, по умолчанию так же 1000.
+   * Минимум 1000, по умолчанию 1000.
    */
   events_limit?: number
   /**
@@ -195,15 +152,9 @@ export interface MessagesGetLongPollHistoryParams {
    * Лимиты events_limit и msgs_limit суммируются: вернутся события, которые ограничены
    * первым достигнутым лимитом.
    *
-   * Минимум 200, по умолчанию так же 200.
+   * Минимум 200, по умолчанию 200.
    */
   msgs_limit?: number
-  /**
-   * ID последнего сообщения, которое сохранено в приложении.
-   *
-   * При его указании возвращаются события, пришедшие после написания указанного сообщения.
-   */
-  max_msg_id?: number
   /**
    * Используемая версия LongPoll.
    */
@@ -225,21 +176,64 @@ export interface MessagesGetLongPollHistoryParams {
 
 /** ********************************************************************************************* */
 
-export interface MessagesGetById {
-  count: number
-  items: VKMessage[]
+export interface MessagesGetLongPollServer {
+  server: string
+  key: string
+  ts: number
   /**
-   * Приходит только при extended: 1 и при наличии самих профилей
+   * Приходит только при указании need_pts в запросе
    */
-  profiles?: VKUser[]
-  /**
-   * Приходит только при extended: 1 и при наличии самих сообществ
-   */
-  groups?: VKGroup[]
+  pts?: number
 }
 
-export interface MessagesGetByIdParams {
-  message_ids: number | string
-  extended?: 0 | 1
-  fields?: string
+export interface MessagesGetLongPollServerParams {
+  /**
+   * Технически он не имеет никакого значения при вызове этого метода,
+   * ведь версия указывается при каждом запросе к LongPoll.
+   *
+   * Принимает любое положительные число.
+   */
+  lp_version?: number
+  /**
+   * Нужен для возвращения pts, который нужен для получения истории событий
+   * начиная с определенного момента.
+   */
+  need_pts?: 0 | 1
+}
+
+/** ********************************************************************************************* */
+
+/**
+ * Возвращает ID отправленного сообщения
+ */
+export type MessagesSend = number;
+
+export interface MessagesSendParams {
+  user_id?: number
+  random_id: number
+  peer_id?: number
+  domain?: string
+  chat_id?: number
+  message?: string
+  lat?: number
+  long?: number
+  attachment?: string
+  reply_to?: number
+  forward_messages?: string
+  sticker_id?: number
+  // TODO
+  keyboard?: any
+  // TODO
+  template?: any
+  // TODO
+  payload?: any
+  dont_parse_links?: 0 | 1
+  disable_mentions?: 0 | 1
+  // TODO
+  intent?: any
+  // TODO
+  subscribe_id?: number
+  // type
+  // expire_ttl
+  // silent
 }

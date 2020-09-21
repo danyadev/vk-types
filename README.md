@@ -1,6 +1,9 @@
 # VK Types
 
-VK Types - это библиотека исключительно с TypeScript типами для работы с API ВКонтакте.
+![npm](https://img.shields.io/npm/v/vk-types)
+![npm](https://img.shields.io/npm/l/vk-types)
+
+VK Types - это библиотека с TypeScript типами для работы с API ВКонтакте.
 
 ## Установка
 
@@ -21,11 +24,17 @@ $ npm i -D vk-types
 * `methods` - параметры и ответы методов
 * `attachments` - вложения для сообщений
 
-Существует три способа импорта нужных типов:
+Импортировать нужные типы можно тремя способами:
 
 1. Через глобальный `index.ts`:
 ```ts
-import { VKUser, MessagesSend, MessagesSendParams, VKAttachment, VKAttachmentWallReply } from 'vk-types';
+import {
+  VKUser,
+  MessagesSend,
+  MessagesSendParams,
+  VKAttachment,
+  VKAttachmentWallReply
+} from 'vk-types';
 ```
 
 2. Через `index.ts` в каждом разделе:
@@ -35,10 +44,54 @@ import { MessagesSend, MessagesSendParams } from 'vk-types/methods';
 import { VKAttachment, VKAttachmentWallReply } from 'vk-types/attachments';
 ```
 
-3. Напрямую сам файл (в нем может быть несколько экспортов):
+3. Через сам файл с нужным типом:
 ```ts
 import { VKUser } from 'vk-types/objects/VKUser';
 import { MessagesSend, MessagesSendParams } from 'vk-types/methods/messages';
 import { VKAttachment } from 'vk-types/attachments';
 import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 ```
+
+## Поддерживаемые типы
+
+На данный момент поддерживается довольно мало типов, но вы всегда можете [помочь нам](#contributing) с их написанием.
+
+### Объекты
+[Папка с объектами](https://github.com/danyadev/vk-types/tree/master/src/objects)
+
+- `VKConversation` - беседа
+- `VKConversationPushSettings` - настройки уведомлений беседы
+- `VKGroup` - сообщество
+- `VKImage` - фотография
+- `VKKeyboard` - клавиатура
+- `VKLike` - лайки
+- `VKMessage` - сообщения
+- `VKUser` - пользователь
+
+### Методы
+[Папка с методами](https://github.com/danyadev/vk-types/tree/master/src/methods)
+
+- `account.getCounters`
+- `account.getPushSettings`
+
+- `messages.delete`
+- `messages.getById`
+- `messages.getConversationMembers`
+- `messages.getConversationsById`
+- `messages.getLongPollHistory`
+- `messages.getLongPollServer`
+- `messages.send`
+
+## Вложения
+[Папка с вложениями](https://github.com/danyadev/vk-types/tree/master/src/attachments)
+
+- `Geo`
+- `WallReply`
+
+## Contributing
+
+Вы всегда можете помочь проекту: добавить новое поле, изменить его описание или тип, или вовсе
+добавить новый объект, метод или вложение.
+
+Сделать это можно, создав [Pull Request](https://github.com/danyadev/vk-types/pulls) в репозитории.
+Там мы проверим изменения, возможно внесем некоторые правки и примем их.
