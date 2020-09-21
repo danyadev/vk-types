@@ -74,6 +74,7 @@ import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 - `account.getCounters`
 - `account.getPushSettings`
 
+
 - `messages.delete`
 - `messages.getById`
 - `messages.getConversationMembers`
