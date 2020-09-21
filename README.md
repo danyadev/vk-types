@@ -1,7 +1,7 @@
 # VK Types
 
-![npm](https://img.shields.io/npm/v/vk-types)
-![npm](https://img.shields.io/npm/l/vk-types)
+[![npm](https://img.shields.io/npm/v/vk-types)](https://www.npmjs.com/package/vk-types)
+[![npm](https://img.shields.io/npm/l/vk-types)](https://github.com/danyadev/vk-types/blob/master/LICENSE)
 
 VK Types - это библиотека с TypeScript типами для работы с API ВКонтакте.
 
