@@ -14,5 +14,5 @@ export interface VKLike {
   /**
    * Указывает, что комментарий можно репостнуть
    */
-  can_publish?: true
+  can_publish?: 1 | true
 }

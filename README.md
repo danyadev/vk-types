@@ -27,6 +27,7 @@ $ npm i -D vk-types
 Импортировать нужные типы можно тремя способами:
 
 1. Через глобальный `index.ts`:
+
 ```ts
 import {
   VKUser,
@@ -38,6 +39,7 @@ import {
 ```
 
 2. Через `index.ts` в каждом разделе:
+
 ```ts
 import { VKUser } from 'vk-types/objects';
 import { MessagesSend, MessagesSendParams } from 'vk-types/methods';
@@ -45,6 +47,7 @@ import { VKAttachment, VKAttachmentWallReply } from 'vk-types/attachments';
 ```
 
 3. Через сам файл с нужным типом:
+
 ```ts
 import { VKUser } from 'vk-types/objects/VKUser';
 import { MessagesSend, MessagesSendParams } from 'vk-types/methods/messages';
@@ -57,6 +60,7 @@ import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 На данный момент поддерживается довольно мало типов, но вы всегда можете [помочь нам](#contributing) с их написанием.
 
 ### Объекты
+
 [Папка с объектами](https://github.com/danyadev/vk-types/tree/master/src/objects)
 
 - `VKConversation` - беседа
@@ -69,6 +73,7 @@ import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 - `VKUser` - пользователь
 
 ### Методы
+
 [Папка с методами](https://github.com/danyadev/vk-types/tree/master/src/methods)
 
 #### account
@@ -87,9 +92,11 @@ import { VKAttachmentWallReply } from 'vk-types/attachments/WallReply';
 - `messages.send`
 
 ## Вложения
+
 [Папка с вложениями](https://github.com/danyadev/vk-types/tree/master/src/attachments)
 
 - `Geo`
+- `Wall`
 - `WallReply`
 
 ## Contributing
